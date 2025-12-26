@@ -1,149 +1,109 @@
+# Algoritmo de Recomendación de Películas
 
-<div align="center">
+## Descripción
 
-# 🎬 Sistema de Recomendación de Películas
-### Mitigación de Sobrecarga de Información con Machine Learning
+Este proyecto implementa un **algoritmo de recomendación de películas** utilizando técnicas de machine learning y análisis de datos. El sistema proporciona recomendaciones personalizadas basadas en las preferencias y comportamiento del usuario.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+## Características Principales
 
-<p align="center">
-  <a href="#-descripción-del-proyecto">Descripción</a> •
-  <a href="#-metodología">Metodología</a> •
-  <a href="#-arquitectura">Arquitectura</a> •
-  <a href="#-instalación-y-uso">Cómo Usar</a> •
-  <a href="#-créditos">Créditos</a>
-</p>
+- ✅ Análisis de ratings y preferencias de usuarios
+- ✅ Algoritmos de filtrado colaborativo
+- ✅ Recomendaciones personalizadas en tiempo real
+- ✅ Interface intuitiva y fácil de usar
+- ✅ Soporte para múltiples géneros cinematográficos
 
-</div>
+## Tecnologías Utilizadas
 
----
+- **Python** - Lenguaje principal
+- **Pandas** - Análisis y manipulación de datos
+- **NumPy** - Operaciones numéricas
+- **Scikit-learn** - Machine learning
+- **TensorFlow/Keras** - Redes neuronales (opcional)
+- **Flask/Django** - Backend (si aplica)
 
-## 📖 Descripción del Proyecto
+## Instalación
 
-Este proyecto implementa un **Sistema de Recomendación Basado en Contenido** (Content-Based Filtering) diseñado para mitigar la "parálisis por análisis" que sufren los usuarios de plataformas de streaming como Netflix.
+```bash
+# Clonar el repositorio
+git clone https://github.com/JAIMES4224D/Algoritmo-de-Recomendaci-n-Peliculas-.git
 
-A diferencia de los sistemas colaborativos tradicionales, este algoritmo no requiere historial de usuario (solucionando el problema del *Cold Start*). En su lugar, utiliza **Procesamiento de Lenguaje Natural (NLP)** para analizar la similitud semántica entre películas basándose en su trama, género, director y actores.
+# Navegar al directorio
+cd Algoritmo-de-Recomendaci-n-Peliculas-
 
-## 📉 El Problema de Negocio
+# Instalar dependencias
+pip install -r requirements.txt
+```
 
-La gestión de catálogos masivos genera **"Sobrecarga de Información"**:
-* **Paradoja de la elección:** El exceso de opciones bloquea la decisión del usuario.
-* **Impacto Negativo:** Aumenta el tiempo de navegación improductiva y el riesgo de cancelación (*Churn Rate*).
-
-**Objetivo:** Transformar el catálogo en una experiencia curada y personalizada.
-
----
-
-## 🧠 Metodología y Algoritmo
-
-El núcleo del sistema es un pipeline de Machine Learning desarrollado en Python:
-
-### 1. Ingesta y Limpieza (Data Wrangling)
-Se unificaron tres fuentes de datos (`movies_metadata`, `credits`, `keywords`) del dataset "The Movies Dataset". Se realizó un *parsing* de estructuras JSON complejas y limpieza de IDs para asegurar la integridad.
-
-### 2. Feature Engineering: "Metadata Soup"
-Se creó una variable sintética (`metadata_soup`) que combina todos los atributos textuales con una **ponderación estratégica** para capturar la "firma autoral":
+## Uso
 
 ```python
-# Ponderación aplicada para mejorar la relevancia
-metadata_soup = (
-    overview + 
-    (genres * 2) +      # Doble peso al género
-    (keywords * 3) +    # Triple peso a temas de nicho
-    (cast * 3) +        # Triple peso a protagonistas
-    (director * 3)      # Triple peso al Director
-)
+# Ejemplo básico de uso
+from recomendador import RecomendadorPeliculas
 
+# Crear instancia del recomendador
+recomendador = RecomendadorPeliculas()
+
+# Obtener recomendaciones para un usuario
+recomendaciones = recomendador.recomendar(usuario_id=1, num_recomendaciones=5)
 ```
 
-### 3. Modelo Matemático
+## Estructura del Proyecto
 
-* **TF-IDF Vectorizer:** Convierte la sopa de texto en una matriz numérica, penalizando palabras comunes y resaltando términos únicos.
-* **Similitud del Coseno:** Calcula el ángulo entre los vectores de las películas para determinar su grado de parentesco temático.
+```
+├── README.md
+├── requirements.txt
+├── data/
+│   ├── movies.csv
+│   └── ratings.csv
+├── src/
+│   ├── recomendador.py
+│   ├── preprocessing.py
+│   └── modelos.py
+├── notebooks/
+│   └── analisis_exploratorio.ipynb
+└── tests/
+    └── test_recomendador.py
+```
+
+## Algoritmos Implementados
+
+### 1. Filtrado Colaborativo
+Basado en las similitudes entre usuarios o ítems.
+
+### 2. Filtrado Basado en Contenido
+Utiliza características de las películas para hacer recomendaciones.
+
+### 3. Sistemas Híbridos
+Combinación de múltiples enfoques para mejores resultados.
+
+## Datasets
+
+El proyecto utiliza datasets públicos como:
+- MovieLens
+- IMDb
+- Otros datasets personalizados
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+1. Fork el repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## Autores
+
+- **JAIMES4224D** - Desarrollo inicial
+
+## Contacto
+
+Para preguntas o sugerencias, por favor abre un issue en el repositorio.
 
 ---
 
-## ☁️ Arquitectura en la Nube (AWS)
-
-El proyecto está diseñado para desplegarse como un microservicio:
-
-| Componente | Tecnología | Función |
-| --- | --- | --- |
-| **Cómputo** | Amazon EC2 (t2.medium) | Alojamiento del servidor y la API |
-| **Almacenamiento** | Amazon S3 | Resguardo de modelos serializados (`.pkl`) |
-| **API** | FastAPI | Endpoint REST `/recommend` para consultas |
-| **Serialización** | Joblib | Persistencia del modelo entrenado |
-
----
-
-## 📊 Resultados y Validación
-
-Dado que es un modelo no supervisado, se validó mediante **Pruebas de Coherencia Semántica**:
-
-> **Prueba de Entrada:** *The Dark Knight* (Christopher Nolan)
-> **Resultados del Modelo:**
-> 1. *The Dark Knight Rises* (Secuela) ✅
-> 2. *Batman Begins* (Precuela) ✅
-> 3. *Inception* (Mismo Director/Estilo) ✅
-> 
-> 
-
-El modelo demostró respetar géneros puros y detectar hibridaciones lógicas (ej. Acción + Ciencia Ficción).
-
----
-
-## ⚙️ Instalación y Uso
-
-### Prerrequisitos
-
-* Python 3.8+
-* Librerías: `pandas`, `numpy`, `scikit-learn`, `joblib`
-
-### Pasos para ejecutar
-
-1. **Clonar el repositorio:**
-```bash
-git clone [https://github.com/tu-usuario/recomendador-cine.git](https://github.com/tu-usuario/recomendador-cine.git)
-
-```
-
-
-2. **Instalar dependencias:**
-```bash
-pip install pandas numpy scikit-learn joblib
-
-```
-
-
-3. **Ejecutar el script maestro:**
-```bash
-python scriptmaestro.py
-
-```
-
-
-*Esto entrenará el modelo, generará las gráficas de análisis y guardará los archivos `.pkl`.*
-
----
-
-## 🎓 Créditos
-
-<div align="center">
-
-**Universidad Privada Norbert Wiener** *Facultad de Ingeniería*
-
-**Curso:** Gestión y Ciencias de Datos in Cloud
-
-**Docente:** Rodriguez Ruiz, Wilmer Leoncio
-
-**Desarrollado por:**
-
-<h3>Jaimes Passuni, Jeferson</h3>
-
-Lima, Perú - 2025
-
-</div>
-
+**Última actualización:** 2025-12-26
