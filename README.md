@@ -1,5 +1,4 @@
 
-```markdown
 <div align="center">
 
 # 🎬 Sistema de Recomendación de Películas
