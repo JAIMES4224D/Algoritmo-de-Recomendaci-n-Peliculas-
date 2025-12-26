@@ -1,6 +1,3 @@
-¡Claro que sí! Aquí tienes el código fuente completo listo para copiar y pegar en tu archivo `README.md`.
-
-He utilizado **Markdown con HTML incrustado**, que es el estándar profesional para los repositorios de GitHub. Esto permite centrar elementos y usar insignias (badges) para que se vea estético y organizado.
 
 ```markdown
 <div align="center">
