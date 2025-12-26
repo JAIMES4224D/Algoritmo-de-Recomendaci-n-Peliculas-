@@ -142,7 +142,7 @@ python scriptmaestro.py
 
 **Desarrollado por:**
 
-<h3>Jaimes Passuni, Jefferson</h3>
+<h3>Jaimes Passuni, Jeferson</h3>
 
 Lima, Perú - 2025
 
